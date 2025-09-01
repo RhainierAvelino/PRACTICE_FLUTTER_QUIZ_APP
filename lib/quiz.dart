@@ -3,6 +3,7 @@ import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/start_screen.dart';
 import 'package:quiz_app/questions_screen.dart';
 import 'package:quiz_app/results_screen.dart';
+import 'package:quiz_app/app_theme.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -15,50 +16,48 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   List<String> selectedAnswers = [];
-  var activeScreen = 'start-screen';
+  String activeScreen = 'start';
 
-  void switchScreen() {
-    setState(() {
-      activeScreen = 'questions-screen';
-    });
-  }
+  void startQuiz() => setState(() => activeScreen = 'questions');
+
+  void restartQuiz() => setState(() {
+        selectedAnswers = [];
+        activeScreen = 'start';
+      });
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
-
     if (selectedAnswers.length == questions.length) {
-      // Navigate to results screen
-      setState(() {
-        selectedAnswers = [];
-        activeScreen = 'results-screen';
-      });
+      setState(() => activeScreen = 'results');
+    } else {
+      setState(() {}); // advance to next question handled inside QuestionsScreen state
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget screenWidget = StartScreen(switchScreen);
-    if (activeScreen == 'questions-screen') {
-      screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
-    }
-
-    if (activeScreen == 'results-screen') {
-      screenWidget = const ResultsScreen();
+    Widget screenWidget;
+    switch (activeScreen) {
+      case 'questions':
+        screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
+        break;
+      case 'results':
+        screenWidget = ResultsScreen(
+          selectedAnswers: selectedAnswers,
+          onRestart: restartQuiz,
+        );
+        break;
+      default:
+        screenWidget = StartScreen(startQuiz);
     }
 
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.blue, Colors.green],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+        debugShowCheckedModeBanner: false,
+        theme: buildTheme(),
+        home: Scaffold(
+          body: SafeArea(
+            child: screenWidget,
           ),
-          child: screenWidget,
-        ),
-      ),
-    );
+        ));
   }
 }

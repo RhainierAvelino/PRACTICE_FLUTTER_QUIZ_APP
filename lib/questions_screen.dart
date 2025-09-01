@@ -30,33 +30,29 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   Widget build(BuildContext context) {
     final currentQuestion = questions[currentQuestionIndex];
 
-    return SizedBox(
-      width: double.infinity,
-      child: Container(
-        margin: const EdgeInsets.all(40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              currentQuestion.question,
-              style: GoogleFonts.tiltWarp(
-                fontSize: 24,
-                color: const Color.fromARGB(179, 255, 255, 255),
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 30),
-            ...currentQuestion.getShuffledAnswers().map((answer) {
-              return AnswerButton(
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Question ${currentQuestionIndex + 1}/${questions.length}',
+            style: GoogleFonts.openSans(fontSize: 14, color: Colors.black54),
+            textAlign: TextAlign.center,
+          ),
+            const SizedBox(height: 16),
+          Text(
+            currentQuestion.question,
+            style: GoogleFonts.openSans(fontSize: 22, fontWeight: FontWeight.w600),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 28),
+          ...currentQuestion.getShuffledAnswers().map((answer) => AnswerButton(
                 answerText: answer,
-                onTap: () {
-                  answerQuestion(answer);
-                },
-              );
-            }),
-          ],
-        ),
+                onTap: () => answerQuestion(answer),
+              )),
+        ],
       ),
     );
   }

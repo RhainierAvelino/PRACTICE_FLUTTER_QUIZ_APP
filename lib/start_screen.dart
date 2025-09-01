@@ -14,41 +14,35 @@ class StartScreen extends StatelessWidget {
         children: [
           Image.asset(
             'assets/images/quiz-logo.png',
-            width: 270,
-            color: const Color.fromARGB(182, 255, 255, 255),
+            width: 200,
+            color: Colors.black,
           ),
-          const SizedBox(height: 30),
-           Text(
-            'Learn Flutter the fun way!',
-            style: GoogleFonts.tiltWarp(
-              fontSize: 24,
-              color: const Color.fromARGB(193, 255, 255, 255),
+          const SizedBox(height: 24),
+          Text(
+            'Flutter Quiz',
+            style: GoogleFonts.openSans(
+              fontSize: 28,
+              fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 30),
-          OutlinedButton.icon(
-            onPressed: startQuiz,
-            style: OutlinedButton.styleFrom(
-              foregroundColor: Colors.white,
-              side: const BorderSide(color: Colors.white),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+          const SizedBox(height: 8),
+          Text(
+            'Test your knowledge',
+            style: GoogleFonts.openSans(fontSize: 16, color: Colors.black54),
+          ),
+          const SizedBox(height: 32),
+          SizedBox(
+            width: 220,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 32),
+                textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
-            ),
-            icon: const Icon(Icons.play_arrow),
-            label: Text(
-              'Start Quiz',
-              style: GoogleFonts.tiltWarp(
-                color: Colors.white,
-                fontSize: 18,
-                shadows: const [
-                  Shadow(
-                    color: Color.fromARGB(255, 57, 55, 55),
-                    offset: Offset(2, 2),
-                    blurRadius: 2,
-                  ),
-                ],
-              ),
+              onPressed: startQuiz,
+              child: const Text('Start'),
             ),
           ),
         ],
