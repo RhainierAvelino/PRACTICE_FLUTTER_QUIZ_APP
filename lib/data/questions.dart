@@ -1,12 +1,11 @@
 import 'package:quiz_app/models/quiz_questions.dart';
 
+/// Static quiz questions (first answer is correct)
 const questions = [
   QuizQuestions(
-    //answer: Widgets
     question: 'What are the main building blocks of Flutter UI?',
     answers: ['Widgets', 'Components', 'Blocks', 'Functions'],
   ),
-  //answer: By combining widgets in code
   QuizQuestions(
     question: 'How are Flutter UIs built?',
     answers: [
@@ -16,7 +15,6 @@ const questions = [
       'By using a markup language',
     ],
   ),
-  //answer: Update UI as data changes
   QuizQuestions(
     question: 'What\'s the purpose of a StatefulWidget?',
     answers: [
@@ -26,7 +24,6 @@ const questions = [
       'Handle user interactions and events',
     ],
   ),
-  //answer: Manage local state in the widget
   QuizQuestions(
     question: 'What is the primary function of the build method in a widget?',
     answers: [
@@ -37,7 +34,7 @@ const questions = [
     ],
   ),
 
-  //answer: It is called every time the widget needs to be rebuilt
+  // answer: It is called every time the widget needs to be rebuilt
   QuizQuestions(
     question: 'How does the build method work in a widget?',
     answers: [
@@ -45,6 +42,16 @@ const questions = [
       'It is called only once when the widget is created',
       'It is called when the widget is first inserted into the widget tree',
       'It is called when the widget is removed from the widget tree',
+    ],
+  ),
+  //answer: Initialize state before the widget is built
+  QuizQuestions(
+    question: 'What is the purpose of the initState method in a StatefulWidget?',
+    answers: [
+      'Initialize state before the widget is built',
+      'Build the widget’s UI',
+      'Update the widget’s state',
+      'Dispose of resources when the widget is removed',
     ],
   ),
 ];

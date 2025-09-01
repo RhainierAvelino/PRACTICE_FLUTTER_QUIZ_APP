@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen(this.startQuiz, {super.key});
-
   final void Function() startQuiz;
 
   @override
@@ -12,11 +11,7 @@ class StartScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            'assets/images/quiz-logo.png',
-            width: 200,
-            color: Colors.black,
-          ),
+          Image.asset('assets/images/quiz-logo.png', width: 200, color: Colors.black),
           const SizedBox(height: 24),
           Text(
             'Flutter Quiz',
